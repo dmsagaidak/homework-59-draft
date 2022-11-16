@@ -6,25 +6,30 @@ interface State  {
 
 }
 
-class AddForm extends React.Component<{}, State > {
+class AddForm extends React.Component<{}, State> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      title: ''
+    }
+  }
 
   onValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target;
-    console.log(name, value);
+    this.setState({title: e.target.value})
   }
 
   render() {
     return (
       <div className="addForm">
-          <input
-            placeholder="Enter the movie name"
-            id="name"
-            name="name"
-            type="text"
-            value={this.state.title}
-            onChange={this.onValueChange}
-          />
-          <button type="button">Add</button>
+        <input
+          placeholder="Enter the movie name"
+          id="name"
+          name="name"
+          type="text"
+          value={this.state.title}
+          onChange={this.onValueChange}
+        />
+        <button type="button">Add</button>
       </div>
     );
   }
