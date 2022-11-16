@@ -22,6 +22,14 @@ class MovieList extends Component {
     return (
       <div>
         <AddForm/>
+        <>
+          {this.state.posts.map(post => (
+            <Card
+            key={post.id}
+            title={post.name}
+            />
+          ))}
+        </>
       </div>
     );
   }

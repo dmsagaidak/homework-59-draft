@@ -1,16 +1,25 @@
-import React, {Component} from 'react';
+import React from 'react';
+import "./Card.css";
 
-interface State {
+interface Props {
 title: string;
-delete: React.MouseEventHandler;
 }
 
-class Card extends Component<{}, State> {
+class Card extends React.Component<Props> {
+
+  onValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({title: e.target.value})
+  }
+
   render() {
     return (
       <div className="card">
-        <span>{this.state.title}</span>
-        <button onClick={this.state.delete}>Remove</button>
+        <input
+        type="text"
+        value={this.props.title}
+        onChange={this.onValueChange}
+        ></input>
+        <button>Remove</button>
       </div>
     );
   }

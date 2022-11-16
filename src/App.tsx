@@ -1,14 +1,13 @@
 import React from 'react';
-import AddForm from "./Components/AddForm/AddForm";
 import MovieList from "./Containers/MovieList/MovieList";
+import Jokes from "./Components/Jokes/Jokes";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-
       <MovieList/>
-
+      <Jokes/>
     </div>
   );
 }
