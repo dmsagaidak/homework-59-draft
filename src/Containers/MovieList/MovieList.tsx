@@ -17,8 +17,14 @@ class MovieList extends Component {
     ],
   }
 
-  onValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({name: e.target.value})
+  onValueChange = (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const postCopy = [...this.state.posts];
+    const index = this.state.posts.findIndex((item) => item.id === id);
+    const copyItem = {...this.state.posts[index]};
+    copyItem.name = e.target.value;
+    postCopy[index] = copyItem;
+
+    this.setState({posts: postCopy})
   }
 
   removeItem = (id: string) =>{
@@ -35,7 +41,7 @@ class MovieList extends Component {
             <Card
             key={post.id}
             title={post.name}
-            onValueChange={this.onValueChange}
+            onValueChange={(e) => this.onValueChange(post.id, e)}
             remove={() => this.removeItem(post.id)}
             />
           ))}
