@@ -9,9 +9,9 @@ const Jokes = () => {
   const getNewJoke = () =>{
     const fetchData = async () =>{
       const response = await fetch(url);
-
       if(response.ok) {
         const memes: ChuckMeme[] = await response.json();
+        console.log(memes);
         const newJokes = memes.map(meme =>({
           ...meme,
           categories: meme.categories,
@@ -22,6 +22,7 @@ const Jokes = () => {
           url: meme.url,
           value: meme.value
         }))
+
         setJokes(newJokes);
       }
     };
