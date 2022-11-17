@@ -3,13 +3,15 @@ import "./Card.css";
 
 interface Props {
 title: string;
+onValueChange: React.ChangeEventHandler<HTMLInputElement>;
+remove: React.MouseEventHandler;
 }
 
 class Card extends React.Component<Props> {
 
-  onValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({title: e.target.value})
-  }
+shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<{}>, nextContext: any): boolean {
+  return !(this.props.title === nextProps.title);
+}
 
   render() {
     return (
@@ -17,9 +19,9 @@ class Card extends React.Component<Props> {
         <input
         type="text"
         value={this.props.title}
-        onChange={this.onValueChange}
+        onChange={this.props.onValueChange}
         ></input>
-        <button>Remove</button>
+        <button onClick={this.props.remove}>Remove</button>
       </div>
     );
   }

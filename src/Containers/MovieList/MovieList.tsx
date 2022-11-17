@@ -17,6 +17,14 @@ class MovieList extends Component {
     ],
   }
 
+  onValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({name: e.target.value})
+  }
+
+  removeItem = (id: string) =>{
+    this.setState(prev => prev.filter(item => item.id !== id));
+  }
+
 
   render() {
     return (
@@ -27,6 +35,8 @@ class MovieList extends Component {
             <Card
             key={post.id}
             title={post.name}
+            onValueChange={this.onValueChange}
+            remove={this.removeItem(post.id)}
             />
           ))}
         </>
