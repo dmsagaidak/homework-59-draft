@@ -22,7 +22,7 @@ class MovieList extends Component {
   }
 
   removeItem = (id: string) =>{
-    this.setState(prev => prev.filter(item => item.id !== id));
+    this.setState({posts: this.state.posts.filter((item) => item.id !== id)});
   }
 
 
@@ -36,7 +36,7 @@ class MovieList extends Component {
             key={post.id}
             title={post.name}
             onValueChange={this.onValueChange}
-            remove={this.removeItem(post.id)}
+            remove={() => this.removeItem(post.id)}
             />
           ))}
         </>

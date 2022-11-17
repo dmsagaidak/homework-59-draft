@@ -18,6 +18,11 @@ class AddForm extends React.Component<{}, State> {
     this.setState({title: e.target.value})
   }
 
+  onItemAdd = () => {
+    const randomId = Math.floor(Math.random());
+    let newItem = {name: this.state.title, id: randomId.toString()}
+  }
+
   render() {
     return (
       <div className="addForm">
