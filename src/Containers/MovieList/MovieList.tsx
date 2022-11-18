@@ -4,7 +4,8 @@ import {Post} from "../../types";
 import AddForm from "../../Components/AddForm/AddForm";
 
 interface State {
-  posts: Post[]
+  posts: Post[],
+  newMovie: string
 }
 
 class MovieList extends Component {
@@ -15,6 +16,7 @@ class MovieList extends Component {
       {name: 'Furiosa', id: 'm2'},
       {name: 'The Marvels', id: 'm3'}
     ],
+    newMovie: "New movie",
   }
 
   onValueChange = (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +29,12 @@ class MovieList extends Component {
     this.setState({posts: postCopy})
   }
 
+  onItemAdd = (name: string) =>{
+    let randomId = Math.floor(Math.random());
+    this.state.posts.push({name: name, id: randomId.toString()});
+    this.setState({posts: this.state.posts});
+  }
+
   removeItem = (id: string) =>{
     this.setState({posts: this.state.posts.filter((item) => item.id !== id)});
   }
@@ -35,7 +43,10 @@ class MovieList extends Component {
   render() {
     return (
       <div>
-        <AddForm/>
+        <AddForm
+        title={this.state.newMovie}
+        onItemAdd={() => this.onItemAdd(this.state.newMovie)}
+        />
         <>
           {this.state.posts.map(post => (
             <Card

@@ -1,33 +1,16 @@
 import React from 'react';
-import {Post} from "../../types";
 import "./AddForm.css"
 
-interface State  {
+interface Props {
   title: string;
-  posts: Post[]
+  onItemAdd: () => void;
 }
 
 
-class AddForm extends React.Component<{}, State> {
-  constructor(props: {}) {
-    super(props);
-    this.state = {
-      title: '',
-      posts: [{name: 'Guardians of Galaxy pt.3', id: 'm1'},
-        {name: 'Furiosa', id: 'm2'},
-        {name: 'The Marvels', id: 'm3'}]
-    }
-  }
+class AddForm extends React.Component<Props> {
 
   onValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({title: e.target.value})
-  }
-
-  onItemAdd = () => {
-    const randomId = Math.floor(Math.random());
-    let newItem = {name: this.state.title, id: randomId.toString()};
-    const postCopy = [...this.state.posts, newItem];
-    this.setState({posts: postCopy});
   }
 
   render() {
@@ -38,10 +21,10 @@ class AddForm extends React.Component<{}, State> {
           id="name"
           name="name"
           type="text"
-          value={this.state.title}
+          value={this.props.title}
           onChange={this.onValueChange}
         />
-        <button type="button" onClick={this.onItemAdd}>Add</button>
+        <button type="button" onClick={() => this.props.onItemAdd()}>Add</button>
       </div>
     );
   }
