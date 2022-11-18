@@ -10,18 +10,11 @@ const Jokes = () => {
     const fetchData = async () =>{
       const response = await fetch(url);
       if(response.ok) {
-        const memes: ChuckMeme[] = await response.json();
-        console.log(memes);
-        const newJokes = memes.map(meme =>({
-          ...meme,
-          categories: meme.categories,
-          created_at: meme.created_at,
-          icon_url: meme.icon_url,
-          id: meme.id,
-          updated_at: meme.updated_at,
-          url: meme.url,
-          value: meme.value
-        }))
+        const memes = await response.json();
+        console.log(memes.length);
+        const newJokes = [
+          {...memes}
+        ]
 
         setJokes(newJokes);
       }

@@ -27,7 +27,7 @@ class AddForm extends React.Component<{}, State> {
     const randomId = Math.floor(Math.random());
     let newItem = {name: this.state.title, id: randomId.toString()};
     const postCopy = [...this.state.posts, newItem];
-    this.setState({posts: postCopy})
+    this.setState({posts: postCopy});
   }
 
   render() {
